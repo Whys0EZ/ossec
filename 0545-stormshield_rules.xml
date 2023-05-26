@@ -1,0 +1,6 @@
+<group name="syslog,stormshield,">
+  <rule id="100010" level="5">
+    <decoded_as>stormshield_decoder</decoded_as>
+    <description>Stormshield logs grouping rule</description>
+  </rule>
+</group>
