@@ -1,0 +1,27 @@
+
+<decoder name="stormshield_decoder">
+  <prematch>172.0.101.1 id=firewall</prematch>
+</decoder>
+<decoder name="stormshield_decoder_1">
+    <parent>stormshield_decoder</parent>
+    <regex>time="(\.*)" fw="(\.*)" tz=(\S+) startime="(\.*)" pri=(\S+) confid=(\S+)</regex>
+    <order>ips.event_time, fw, tz, startime, pri, confid</order>
+</decoder>
+
+<decoder name="stormshield_decoder_1">
+    <parent>stormshield_decoder</parent>
+    <regex offset="after_regex">\.* proto=(\S+) src=(\S+) srcport=(\d+)</regex>
+    <order>proto, srcip, src_port</order>
+</decoder>
+
+<decoder name="stormshield_decoder_1">
+    <parent>stormshield_decoder</parent>
+    <regex offset="after_regex">dst=(\S+) dstport=(\d+) \.* dstname=(\S+) \.* action=(\S+)</regex>
+    <order>dest_ip ,dst_port, dstname, alert.action</order>
+</decoder>
+
+<decoder name="stormshield_decoder_1">
+    <parent>stormshield_decoder</parent>
+    <regex offset="after_regex">dst=(\S+) dstport=(\d+) \.* action=(\S+) msg="(\.*)"</regex>
+    <order>dest_ip ,dst_port, alert.action, alert.signature</order>
+</decoder>
