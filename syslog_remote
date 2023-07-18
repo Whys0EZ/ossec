@@ -1,0 +1,57 @@
+  <alerts>
+    <log_alert_level>3</log_alert_level>
+    <email_alert_level>12</email_alert_level>
+  </alerts>
+
+  <remote>
+    <connection>secure</connection>
+    <port>1514</port>
+    <protocol>tcp</protocol>
+  </remote>
+
+  <remote>
+    <connection>syslog</connection>
+    <port>514</port>
+    <allowed-ips>192.168.1.0/24</allowed-ips>
+    <protocol>udp</protocol>
+  </remote>
+
+  <syslog_output>
+    <server>192.168.1.126</server>
+    <port>515</port>
+    <format>json</format>
+  </syslog_output>
+
+  <syslog_output>
+    <server>192.168.1.32</server>
+    <port>514</port>
+  </syslog_output>
+
+  <!-- Policy monitoring -->
+
+
+  ++++++++++++++++++++++++++++++++++++++++
+
+
+    <!--
+  <active-response>
+    active-response options here
+  </active-response>
+  -->
+
+  <active-response>
+    <command>win_route-null</command>
+    <location>local</location>
+    <level>6</level>
+    <timeout>600</timeout>
+  </active-response>
+
+  <active-response>
+    <command>firewall-drop</command>
+    <location>local</location>
+    <rules_id>5712</rules_id>
+    <timeout>180</timeout>
+  </active-response>
+
+
+  <!-- Log analysis -->
